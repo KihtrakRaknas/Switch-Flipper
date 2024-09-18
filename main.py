@@ -27,7 +27,7 @@ def on_route(request):
     global state
     state = True
     s1.goto(round(180/195*1024))
-    sleep(.15+.05)
+    sleep(.15+.2)
     s1.goto(round(90/195*1024))
     sleep(.15)
     s1.free()
@@ -39,7 +39,7 @@ def off_route(request):
     global state
     state = False
     s1.goto(round(0/195*1024))
-    sleep(.2+.05)
+    sleep(.2+.2)
     s1.goto(round(90/195*1024))
     sleep(.2)
     s1.free()
