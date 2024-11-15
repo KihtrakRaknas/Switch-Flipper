@@ -6,12 +6,17 @@
     <title>Light Switch</title>
 </head>
 <body>
-    <label for="servo-angle">Servo Angle:</label>
-    <input type="range" id="servo-angle" min="0" max="180">
-
+    {{servos}}
+    {{
+    " ".join([f"""
+    <label for="servo-angle">Servo {i} Angle (Port {servo_port}):</label>
+    <br>
+    <input type="range" class="servo-angle" data-servo-index="{i}" min="0" max="180">
+    <br><br>
+    """ for i, servo_port in enumerate(servos)])
+    }}
     <script>
-        const ipaddr = "192.168.86.59"
-        const slider = document.getElementById('servo-angle');
+        const sliders = document.getElementsByClassName('servo-angle');
         let timeoutId = null;
 
         const debounce = (func, delay) => {
@@ -19,18 +24,21 @@
             timeoutId = setTimeout(func, delay);
         };
 
-        slider.addEventListener('input', () => {
-            debounce(() => {
-                const angle = slider.value;
-                const url = `${window.location.origin}/turn?angle=${angle}`;
+        for(let slider of sliders){
+            slider.addEventListener('input', () => {
+                debounce(() => {
+                    const servoIndex = slider.getAttribute('data-servo-index');
+                    const angle = slider.value;
+                    const url = `${window.location.origin}/${servoIndex}/turn?angle=${angle}`;
 
-                fetch(url)
-                    .then(response => console.log)
-                    .catch(error => {
-                        console.log('Error:', error);
-                    });
-            }, 1000); // Delay of 1 second (1000 milliseconds)
-        });
+                    fetch(url)
+                        .then(response => console.log)
+                        .catch(error => {
+                            console.log('Error:', error);
+                        });
+                }, 200); // Delay of 1 second (1000 milliseconds)
+            });
+        }
     </script>
 </body>
 </html>

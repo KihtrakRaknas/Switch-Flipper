@@ -17,6 +17,15 @@ useful for finding the right angles you need.
 - `/off`: Turns the switch off. Then moves the device back to the neutral position.
 - `/state`: Returns a 1 or 0 to represent the state of the switch.
 
+### New end points
+The newest update adds the ability to control multiple servo motors with one
+Pico. The config file now takes in a list of _servo_ports_. The index of each
+servo is the index you use in the endpoints:
+- `/<index>/turn`
+- `/<index>/on`
+- `/<index>/off`
+- `/<index>/state`
+
 ## Set Up
 Create a `config.py` folder using `config.py.template` as a reference.
 
