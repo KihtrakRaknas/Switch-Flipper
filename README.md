@@ -1,5 +1,14 @@
 # Switch Flip
 
+
+
+## Video Demo 
+#### 1 switch
+https://github.com/user-attachments/assets/9f9e994c-2c8e-4874-a161-de7cbf6cea0c
+
+#### 2 switches with 1 Pi
+https://github.com/user-attachments/assets/0e0c4168-1cfa-4193-8948-caf15af823f2
+
 This code was written in MicroPython to run on a Raspberry Pi Pico W.
 
 This project allows you to remotely turn any wall switch on or off. It is meant
